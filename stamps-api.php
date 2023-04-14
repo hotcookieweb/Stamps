@@ -5,7 +5,7 @@
  * see https: //developer.stamps.com/rest-api/reference/serav1.html#tag/auth
  * Name: stamps-api
  * description: PHP implement of stamps.com REST API
- * version: 1.0
+ * version: 1.1
  * category: Class
  */
 Class Stamps_API {
@@ -63,7 +63,6 @@ Class Stamps_API {
       $this->client_id = 'your client id';
       $this->client_secret = 'your client secret';
       $this->redirect_uri = 'https://yoursite.com/redirect_uri';
-      $this->scope = 'online_access';
     }
     else {
       $this->stampsenv = 'sandbox';
@@ -79,7 +78,6 @@ Class Stamps_API {
       else {
         $this->redirect_uri = 'https://yoursite.local/redirect_uri';      
       }
-      $this->scope = 'offline_access';
     }
   }
   
@@ -213,7 +211,7 @@ Class Stamps_API {
         }
       }
       else {
-        $redirect_url = $this->signinurl . '?client_id=' . $this->client_id . '&scope='. $this->scope . '&response_type=code&redirect_uri=' . urlencode($this->redirect_uri);
+        $redirect_url = $this->signinurl . '?client_id=' . $this->client_id . '&response_type=code&redirect_uri=' . urlencode($this->redirect_uri);
         $return['status'] = 302;
         $return['errors'][0]['error_code'] = 302;
         $return['errors'][0]['error_message'] = "Stamps token setup, complete stamps login below and retry";
