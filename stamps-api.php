@@ -211,12 +211,12 @@ Class Stamps_API {
         }
       }
       else {
-        $redirect_url = $this->signinurl . '?client_id=' . $this->client_id . '&response_type=code&redirect_uri=' . urlencode($this->redirect_uri);
+        $login_url = $this->signinurl . '?client_id=' . $this->client_id . '&response_type=code&scope=offline_access&redirect_uri=' . urlencode($this->redirect_uri);
         $return['status'] = 302;
         $return['errors'][0]['error_code'] = 302;
         $return['errors'][0]['error_message'] = "Stamps token setup, complete stamps login below and retry";
         $return['errors'][1]['error_code']  = "url";
-        $return['errors'][1]['error_message']  = '<a onclick="window.open(\'' . $redirect_url . '\', \'popup\', \'location=0,width=500,height=400,left=500,top=55\'); return false;">Stamps login</a>'?>
+        $return['errors'][1]['error_message']  = '<a onclick="window.open(\'' . $login_url . '\', \'popup\', \'location=0,width=500,height=400,left=500,top=55\'); return false;">Stamps login</a>'?>
         <?php return $return; 
       }
       $body = 'grant_type=refresh_token&client_id=' . $this->client_id . '&client_secret=' . $this->client_secret . '&refresh_token=' . $token['refresh_token'];
